@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 5881090487279847871}
   - component: {fileID: 452087188833572492}
   - component: {fileID: 1615076885956720605}
+  - component: {fileID: 7241251593336102755}
   - component: {fileID: 1494891916443022292}
   m_Layer: 7
   m_Name: ThirdPersonPlayer
@@ -511,6 +512,7 @@ Transform:
   m_Children:
   - {fileID: 6849911532409198620}
   - {fileID: 5929853886249723842}
+  - {fileID: 7020702062211562653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &452087188833572492
@@ -531,13 +533,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.7
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 12.99, y: 7.19, z: 10.67}
+  m_Center: {x: 12.99, y: 7.17, z: 10.67}
 --- !u!114 &1615076885956720605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +558,23 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 6
   turnSmoothTime: 0.1
+  gravity: -9.81
+  verticalVelocity: 0
+--- !u!114 &7241251593336102755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180383035044340608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca868d4d71ac914f8da0e1b1f74a944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 1450063860247182034, guid: 44414b3bcdbeb9a47a89acda7cf94841, type: 3}
+  spellSpawnPoint: {fileID: 7020702062211562653}
+  cam: {fileID: 0}
 --- !u!95 &1494891916443022292
 Animator:
   serializedVersion: 7
@@ -704,6 +723,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7754128860870069420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2766514846806309801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7020702062211562653}
+  m_Layer: 7
+  m_Name: SpellSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7020702062211562653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766514846806309801}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.98, y: 7.875843, z: 11.047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5881090487279847871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2950390133738951274
 GameObject:
