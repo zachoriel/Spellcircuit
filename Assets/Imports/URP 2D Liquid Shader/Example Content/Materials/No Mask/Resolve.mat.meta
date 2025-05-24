@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b770b0960b2c5e740aa41fd425cfff74
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/No Mask/Resolve.mat
+  uploadId: 672771

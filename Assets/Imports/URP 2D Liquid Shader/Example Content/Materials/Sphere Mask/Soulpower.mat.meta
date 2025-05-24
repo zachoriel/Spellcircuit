@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a57216c20bb6f494a8211ca378e26483
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Sphere Mask/Soulpower.mat
+  uploadId: 672771

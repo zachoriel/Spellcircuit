@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8fe3f63081f889d419f22f2a53210436
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Prefabs/Resolve Holder.prefab
+  uploadId: 672771

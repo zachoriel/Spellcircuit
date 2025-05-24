@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2d1ce0a512975bf4a820787f4fdde811
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Post/Post Profile.asset
+  uploadId: 672771

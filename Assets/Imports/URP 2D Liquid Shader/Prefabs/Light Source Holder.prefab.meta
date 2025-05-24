@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ceb93a122fd4afa4f86a21150c1f6c56
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Prefabs/Light Source Holder.prefab
+  uploadId: 672771

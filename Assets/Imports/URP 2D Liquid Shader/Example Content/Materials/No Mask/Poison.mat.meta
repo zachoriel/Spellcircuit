@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b126867a3487bfc409233c95b014508a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/No Mask/Poison.mat
+  uploadId: 672771

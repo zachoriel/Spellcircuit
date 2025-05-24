@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8340aa099d246cb47af576c6a6983b49
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Sphere Mask/Dread.mat
+  uploadId: 672771

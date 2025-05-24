@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 28b309004d1d1f7499c7e28fc7e9579a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Sphere Mask (Waters)/Water
+    4.mat
+  uploadId: 672771

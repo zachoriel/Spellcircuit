@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 33e50cb4657e5d747aec6e2c96a53eef
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/No Mask/Darkness.mat
+  uploadId: 672771

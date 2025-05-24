@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b3ceaaf4535fc534185ed9f7dc746322
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Scripts/Editor/LiquidShaderGUI.cs
+  uploadId: 672771

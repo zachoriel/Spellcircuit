@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b472ad0e4870db548950a6d38f1b6c83
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Potions - Demo.unity
+  uploadId: 672771

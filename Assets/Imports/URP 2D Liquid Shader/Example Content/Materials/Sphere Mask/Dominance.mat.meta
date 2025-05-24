@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 109c4d1fa6f40cc44b2f685652a89232
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Sphere Mask/Dominance.mat
+  uploadId: 672771

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5c446ddd4ba44474ca3267ce5911d8f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Sphere Mask/Spellpower.mat
+  uploadId: 672771

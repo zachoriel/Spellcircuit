@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f389f8e033d6c01419739b73b45c3720
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Example Content/Materials/Potion mask/Potion
+    mask 2.mat
+  uploadId: 672771

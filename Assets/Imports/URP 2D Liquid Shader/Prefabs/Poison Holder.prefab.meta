@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 52732f070fd615f458025bb7e24a7f48
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Prefabs/Poison Holder.prefab
+  uploadId: 672771

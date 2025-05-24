@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 362ef6fdf98f09840ba055d6b4516c0c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 204299
+  packageName: URP 2D Liquid Shader
+  packageVersion: 1.0
+  assetPath: Assets/URP 2D Liquid Shader/Prefabs/Water5 Holder.prefab
+  uploadId: 672771
