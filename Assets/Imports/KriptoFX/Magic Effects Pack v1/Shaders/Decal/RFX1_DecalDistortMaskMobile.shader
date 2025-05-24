@@ -26,8 +26,9 @@ Category {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_instancing
 			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
+
 
 			#include "UnityCG.cginc"
 
@@ -48,7 +49,6 @@ Category {
 				float4 vertex : POSITION;
 				half4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
-
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -58,7 +58,6 @@ Category {
 				float4 texcoord : TEXCOORD0;
 				float2 uvMask : TEXCOORD1;
 				UNITY_FOG_COORDS(2)
-
 					UNITY_VERTEX_INPUT_INSTANCE_ID
 					UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -70,6 +69,7 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
+
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
@@ -98,7 +98,7 @@ Category {
 
 				half4 col = 2.0f * i.color * _TintColor * tex;
 
-				
+				UNITY_APPLY_FOG(i.fogCoord, col);
 
 				half m = saturate(mask - _Cutoff);
 				half alpha = saturate(tex.a * m * _TintColor.a * 2 * i.color.a);

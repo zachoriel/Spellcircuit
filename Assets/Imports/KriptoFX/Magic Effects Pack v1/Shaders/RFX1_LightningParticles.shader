@@ -19,8 +19,8 @@ Category {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_instancing
 			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
 
 			#include "UnityCG.cginc"
 
@@ -36,7 +36,7 @@ Category {
 				float4 vertex : POSITION;
 				half4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID //Insert
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f {
@@ -44,9 +44,9 @@ Category {
 				half4 color : COLOR;
 				float2 uvMain : TEXCOORD0;
 				float4 uvDistort : TEXCOORD1;
-				UNITY_FOG_COORDS(2)
-				UNITY_VERTEX_INPUT_INSTANCE_ID
-				UNITY_VERTEX_OUTPUT_STEREO
+				UNITY_FOG_COORDS(6)
+					UNITY_VERTEX_INPUT_INSTANCE_ID
+					UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			float4 _MainTex_ST;
@@ -56,7 +56,6 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
@@ -76,7 +75,6 @@ Category {
 			half4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_INSTANCE_ID(i);
-
 				half4 distort1 = tex2D(_DistortTex1, i.uvDistort.xy + _DistortSpeed.x * i.color.r / 10) * 2 - 1;
 				half4 distort2 = tex2D(_DistortTex1, i.uvDistort.xy - _DistortSpeed.x * i.color.r / 10 * 1.4 + float2(0.4, 0.6)) * 2 - 1;
 				half4 distort3 = tex2D(_DistortTex2, i.uvDistort.zw + _DistortSpeed.z * i.color.r / 10) * 2 - 1;

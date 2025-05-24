@@ -42,9 +42,7 @@ Category {
 				float4 vertex : POSITION;
 				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
-
 				UNITY_VERTEX_INPUT_INSTANCE_ID
-
 			};
 
 			struct v2f {
@@ -55,7 +53,6 @@ Category {
 				float4 projPos : TEXCOORD2;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 					UNITY_VERTEX_OUTPUT_STEREO
-
 			};
 
 			float4 _MainTex_ST;
@@ -86,8 +83,8 @@ Category {
 			half4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_INSTANCE_ID(i);
-				#ifdef SOFTPARTICLES_ON
-				float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w));
+				//#ifdef SOFTPARTICLES_ON
+				float sceneZ = LinearEyeDepth (SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w));
 				float partZ = i.projPos.z;
 				float fade = 1 - saturate (_InvFade * (sceneZ-partZ));
 				float fade2 = 1 - saturate(_InvFade * (sceneZ - partZ) * 5);
@@ -100,9 +97,7 @@ Category {
 				col.a *= saturate(alpha * pow(_Cutout, .2));
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, col, half4(0, 0, 0, 0));
 				return col;
-				#else
-				return 0;
-				#endif
+
 			}
 			ENDCG
 		}

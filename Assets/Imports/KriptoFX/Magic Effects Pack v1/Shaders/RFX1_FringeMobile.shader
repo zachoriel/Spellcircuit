@@ -23,7 +23,7 @@ Category {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_instancing
+		#pragma multi_compile_instancing
 			#pragma multi_compile_particles
 			#pragma multi_compile_fog
 			
@@ -52,6 +52,7 @@ Category {
 				float4 projPos : TEXCOORD2;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 					UNITY_VERTEX_OUTPUT_STEREO
+
 			};
 			
 			float4 _MainTex_ST;
@@ -63,7 +64,6 @@ Category {
 				UNITY_SETUP_INSTANCE_ID(v);
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.projPos = ComputeScreenPos (o.vertex);
 				COMPUTE_EYEDEPTH(o.projPos.z);
@@ -81,8 +81,7 @@ Category {
 	
 			
 			half4 frag (v2f i) : SV_Target
-			{
-				UNITY_SETUP_INSTANCE_ID(i);
+			{ UNITY_SETUP_INSTANCE_ID(i);
 				fixed2 tex1 = tex2D(_MainTex, i.texcoord + _Time.x * _Speed * half2(0, -0.5)).xy;
 				fixed tex2 = tex2D(_MainTex, i.texcoord + tex1.xy * _Scale + _Time.x * _Speed * half2(-2, 3)).b;
 				half4 col = i.color * tex2 * tex2 * 2;

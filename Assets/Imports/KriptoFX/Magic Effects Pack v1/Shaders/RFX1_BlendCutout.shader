@@ -11,8 +11,9 @@ Shader "KriptoFX/RFX1/BlendCutout" {
 		Category{
 				Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 				Blend SrcAlpha OneMinusSrcAlpha
-			//ColorMask RGB
-			Cull Off ZWrite Off
+		
+			Cull Off 
+			ZWrite Off
 
 			SubShader{
 			Pass{
@@ -20,9 +21,11 @@ Shader "KriptoFX/RFX1/BlendCutout" {
 			CGPROGRAM
 	#pragma vertex vert
 	#pragma fragment frag
-	#pragma multi_compile_instancing
+
 	#pragma multi_compile_particles
 	#pragma multi_compile_fog
+			#pragma multi_compile_instancing
+
 	float4x4 _InverseTransformMatrix;
 
 	#include "UnityCG.cginc"
@@ -49,7 +52,6 @@ Shader "KriptoFX/RFX1/BlendCutout" {
 	#endif
 			UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
-
 		};
 
 		float4 _MainTex_ST;
@@ -61,6 +63,7 @@ Shader "KriptoFX/RFX1/BlendCutout" {
 			UNITY_SETUP_INSTANCE_ID(v);
 			UNITY_TRANSFER_INSTANCE_ID(v, o);
 			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
 			o.vertex = UnityObjectToClipPos(v.vertex);
 	#ifdef SOFTPARTICLES_ON
 			o.projPos = ComputeScreenPos(o.vertex);
@@ -74,18 +77,13 @@ Shader "KriptoFX/RFX1/BlendCutout" {
 			return o;
 		}
 
-		UNITY_DECLARE_DEPTH_TEXTURE(_CameraDepthTexture);
+		sampler2D_float _CameraDepthTexture;
 		float _InvFade;
 
 		half4 frag(v2f i) : SV_Target
 		{
 			UNITY_SETUP_INSTANCE_ID(i);
-	#ifdef SOFTPARTICLES_ON
-		float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w));
-			float partZ = i.projPos.z;
-			float fade = saturate(_InvFade * (sceneZ - partZ));
-			i.color.a *= fade;
-	#endif
+
 
 			half4 col = 2.0f * i.color * tex2D(_MainTex, i.texcoord.xy);
 			half cutoutAlpha = tex2D(_CutoutMap, i.texcoord.zw).r;

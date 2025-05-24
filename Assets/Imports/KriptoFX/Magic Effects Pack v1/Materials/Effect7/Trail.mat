@@ -49,4 +49,5 @@ Material:
     - _Emission: {r: 1, g: 0.5, b: 0.5, a: 0}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
-    - _TintColor: {r: 2.4518783, g: 1.3453113, b: 0.821148, a: 1}
+    - _TintColor: {r: 3.6694133, g: 1.59484, b: 0.60579926, a: 1}
+  m_BuildTextureStacks: []

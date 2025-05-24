@@ -67,7 +67,7 @@ Material:
     m_Floats:
     - DstMode: 0
     - SrcMode: 2
-    - _AlphaClip: 10
+    - _AlphaClip: 50
     - _AlphaPow: 1
     - _Amount: 0.5
     - _BumpAmt: -200
@@ -109,7 +109,7 @@ Material:
     - _CutoutColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 0.5529412, g: 0.6262068, b: 0.8, a: 1}
     - _HeightUVScrollDistort: {r: 8, g: 12, b: 0, a: 0}
-    - _MainColor: {r: 0.9734429, g: 1.0169723, b: 1.0676471, a: 1}
+    - _MainColor: {r: 1.0534408, g: 1.1201767, b: 1.2909217, a: 1}
     - _ReflectColor: {r: 0.1454909, g: 0.14565384, b: 0.16911763, a: 1}
     - _RimColor: {r: 0.6729022, g: 0.7286853, b: 0.9338235, a: 1}
     - _SSSColor: {r: 0.98439384, g: 1.0928022, b: 1.4092375, a: 1}
@@ -117,3 +117,4 @@ Material:
     - _Test: {r: 7, g: 8, b: 0, a: 1500}
     - _TintColor: {r: 0.50913715, g: 0.5241894, b: 0.53676474, a: 1}
     - _UVScrollFadeDistort: {r: 3, g: 6, b: 0, a: 1500}
+  m_BuildTextureStacks: []

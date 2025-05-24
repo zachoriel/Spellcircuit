@@ -11,8 +11,7 @@ Properties {
 Category {
 	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
 	Blend SrcAlpha One
-	Cull Off 
-	ZWrite Off
+	Cull Off Lighting Off ZWrite Off
 	Offset -1, -1
 
 	SubShader {
@@ -22,7 +21,6 @@ Category {
 			#pragma vertex vert
 			#pragma fragment frag
 			#pragma multi_compile_instancing
-				#pragma multi_compile_fog
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
@@ -37,7 +35,7 @@ Category {
 				float4 vertex : POSITION;
 				half4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID //Insert
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f {
@@ -49,7 +47,6 @@ Category {
 
 					UNITY_VERTEX_INPUT_INSTANCE_ID
 					UNITY_VERTEX_OUTPUT_STEREO
-
 			};
 
 			float4 _MainTex_ST;
@@ -80,7 +77,6 @@ Category {
 			half4 frag (v2f i) : SV_Target
 			{
 				UNITY_SETUP_INSTANCE_ID(i);
-
 				half4 distort1 = tex2D(_DistortTex1, i.uvDistort.xy + _DistortSpeed.x * _Time.xx) * 2 - 1;
 				half4 distort2 = tex2D(_DistortTex1, i.uvDistort.xy - _DistortSpeed.x * _Time.xx * 1.4 + float2(0.4, 0.6)) * 2 - 1;
 				half4 distort3 = tex2D(_DistortTex2, i.uvDistort.zw + _DistortSpeed.z * _Time.xx) * 2 - 1;

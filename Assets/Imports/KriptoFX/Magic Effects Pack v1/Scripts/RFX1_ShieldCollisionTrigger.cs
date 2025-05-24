@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class RFX1_ShieldCollisionTrigger : MonoBehaviour
 {
-    public event Action<Collider> TriggerEnter;
     public event EventHandler<RFX1_ShieldCollisionInfo> CollisionEnter;
     public event EventHandler<RFX1_ShieldDetectInfo> Detected;
     public float DetectRange = 0;
@@ -62,11 +61,6 @@ public class RFX1_ShieldCollisionTrigger : MonoBehaviour
             Destroy(instance, DestroyTimeDelay);
         }
         
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        TriggerEnter?.Invoke(other);
     }
 }
 

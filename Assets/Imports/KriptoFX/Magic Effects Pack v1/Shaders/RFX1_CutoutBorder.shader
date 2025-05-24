@@ -58,7 +58,6 @@ Shader "KriptoFX/RFX1/CutoutBorder" {
 		float2 uv : TEXCOORD0;
 		half4 color : COLOR;
 		half3 normal : NORMAL;
-
 		UNITY_VERTEX_INPUT_INSTANCE_ID
 	};
 
@@ -95,7 +94,6 @@ Shader "KriptoFX/RFX1/CutoutBorder" {
 	v2f vert(appdata v)
 	{
 		v2f o;
-
 		UNITY_SETUP_INSTANCE_ID(v);
 		UNITY_TRANSFER_INSTANCE_ID(v, o);
 		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
@@ -107,16 +105,16 @@ Shader "KriptoFX/RFX1/CutoutBorder" {
 		o.color = v.color;
 
 		o.light = ShadeCustomLights(v.vertex, v.normal, RFX1_LightCount);
-
+		
 
 		UNITY_TRANSFER_FOG(o,o.vertex);
 
 		return o;
 	}
 
-	fixed4 frag(v2f i) : SV_Target
+	half4 frag(v2f i) : SV_Target
 	{
-		UNITY_SETUP_INSTANCE_ID(i);
+UNITY_SETUP_INSTANCE_ID(i);
 		half4 c = tex2D(_MainTex, i.uv) * _Color;
 		c.rgb = saturate(c.rgb * i.color.rgb * (i.light, 0.33) * 10) + i.light * 0.15;
 		half cutoff = _Cutoff + (1 - i.color.a);
@@ -165,6 +163,7 @@ Shader "KriptoFX/RFX1/CutoutBorder" {
 		V2F_SHADOW_CASTER;
 		UNITY_VERTEX_INPUT_INSTANCE_ID
 			UNITY_VERTEX_OUTPUT_STEREO
+
 	};
 
 	v2f vert(appdata v)
@@ -180,8 +179,7 @@ Shader "KriptoFX/RFX1/CutoutBorder" {
 	}
 
 	float4 frag(v2f i) : COLOR
-	{
-		UNITY_SETUP_INSTANCE_ID(i);
+	{ UNITY_SETUP_INSTANCE_ID(i);
 		half cutoff = _Cutoff + (1 - i.color.a);
 	clip(tex2D(_MainTex, i.uv).a - cutoff);
 	SHADOW_CASTER_FRAGMENT(i)

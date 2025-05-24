@@ -45,7 +45,7 @@ public class RFX1_DemoGUI : MonoBehaviour
         guiStyleHeaderMobile.fontSize = (int)(17f * dpiScale);
 
         ChangeCurrent(Current);
-
+     
         startSunIntensity = Sun.intensity;
 	    startSunRotation = Sun.transform.rotation;
 	    startAmbientLight = RenderSettings.ambientLight;
@@ -79,7 +79,7 @@ public class RFX1_DemoGUI : MonoBehaviour
         var offset = 0f;
         //if (UseMobileVersion)
         //{
-
+            
         //    offset += 50 * dpiScale;
         //    if (GUI.Button(new Rect(10*dpiScale, 63 * dpiScale, 285*dpiScale, 37*dpiScale), "ON / OFF REALISTIC BLOOM") ||
         //        (!isButtonPressed && Input.GetKeyDown(KeyCode.DownArrow)))
@@ -90,23 +90,23 @@ public class RFX1_DemoGUI : MonoBehaviour
         //    if(!isUsedMobileBloom) guiStyleHeaderMobile.normal.textColor = new Color(0.8f, 0.2f, 0.2f);
         //    else guiStyleHeaderMobile.normal.textColor = new Color(0.1f, 0.6f, 0.1f);
         //    GUI.Label(new Rect(400 * dpiScale, 15 * dpiScale, 100 * dpiScale, 20 * dpiScale), "Bloom is "+ (isUsedMobileBloom?"Enabled":"Disabled"), guiStyleHeaderMobile);
-
+            
         //}
         if (GUI.Button(new Rect(10*dpiScale, 63*dpiScale + offset, 285*dpiScale, 37*dpiScale), "Day / Night") || (!isButtonPressed && Input.GetKeyDown(KeyCode.DownArrow)))
         {
             ChangeLight();
         }
-
+      
         GUI.Label(new Rect(400*dpiScale, 15*dpiScale + offset / 2, 100*dpiScale, 20*dpiScale),
             "Prefab name is \"" + Prefabs[currentNomber].name +
             "\"  \r\nHold any mouse button that would move the camera", guiStyleHeader);
-
+        
         //if (!IsShield[currentNomber] && !UseMobileVersion)
         //{
         //    GUI.Label(new Rect(12 * dpiScale, 110 * dpiScale + offset, 50 * dpiScale, 20 * dpiScale), "Projectile Speed: " + Mathf.Round(currentSpeed * 10f) / 10f, guiStyleHeader);
         //    float oldCurrentSpeed = currentSpeed;
         //    if (!UseMobileVersion) currentSpeed = GUI.HorizontalSlider(new Rect(154 * dpiScale, 114 * dpiScale + offset, 135 * dpiScale, 15 * dpiScale), currentSpeed, 0.1f, 10);
-
+           
         //    if (Math.Abs(oldCurrentSpeed - currentSpeed) > 0.001)
         //    {
         //        var animator = currentInstance.GetComponent<RFX1_AnimatorEvents>();
@@ -116,7 +116,7 @@ public class RFX1_DemoGUI : MonoBehaviour
         //        }
         //    }
 
-
+            
         //}
 
         GUI.DrawTexture(new Rect(12*dpiScale, 140*dpiScale + offset, 285*dpiScale, 15*dpiScale), HUETexture, ScaleMode.StretchToFill, false, 0);
@@ -233,7 +233,7 @@ public class RFX1_DemoGUI : MonoBehaviour
         if (IsShield[currentNomber] && UseMobileVersion) mobileCharacterInstance = Instantiate(MobileCharacter);
     }
 
-
+    
 
     void RemoveClones()
     {
@@ -246,7 +246,7 @@ public class RFX1_DemoGUI : MonoBehaviour
 
     void ReactivateShieldProjectile()
     {
-
+        
         if (instanceShieldProjectile != null) Destroy(instanceShieldProjectile);
         instanceShieldProjectile = (currentNomber != 23)
             ? Instantiate(ShieldProjectile)

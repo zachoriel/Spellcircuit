@@ -14,10 +14,10 @@ public class RFX1_TransformMotion : MonoBehaviour
     public float RandomMoveRadius = 0;
     public float RandomMoveSpeedScale = 0;
     public GameObject Target;
-
+ 
     public LayerMask CollidesWith = ~0;
-
-
+   
+   
     public GameObject[] EffectsOnCollision;
     public float CollisionOffset = 0;
     public float DestroyTimeDelay = 5;
@@ -41,7 +41,6 @@ public class RFX1_TransformMotion : MonoBehaviour
     private bool dropFirstFrameForFixUnityBugWithParticles;
     public event EventHandler<RFX1_CollisionInfo> CollisionEnter;
     Vector3 randomTimeOffset;
-    private RFX1_EffectSettings effectSettings;
 
     void Start()
     {
@@ -77,8 +76,6 @@ public class RFX1_TransformMotion : MonoBehaviour
         OnCollisionDeactivateBehaviour(true);
         dropFirstFrameForFixUnityBugWithParticles = true;
         randomTimeOffset = Random.insideUnitSphere * 10;
-
-        effectSettings = GetComponentInParent<RFX1_EffectSettings>();
     }
 
     void Update()
@@ -96,16 +93,10 @@ public class RFX1_TransformMotion : MonoBehaviour
         if (currentDelay < TimeDelay)
             return;
 
-        if (effectSettings != null)
-        {
-            Speed = effectSettings.Speed;
-            Distance = effectSettings.LimitMaxDistance ?  effectSettings.MaxDistnace : 1000;
-        }
-
         Vector3 randomOffset = Vector3.zero;
         if (RandomMoveRadius > 0)
         {
-
+        
             randomOffset = GetRadiusRandomVector() * RandomMoveRadius;
             if (Target != null)
             {
@@ -150,7 +141,7 @@ public class RFX1_TransformMotion : MonoBehaviour
                 return;
             }
         }
-
+      
         if (!isOutDistance && currentDistance + RayCastTolerance > Distance)
         {
             isOutDistance = true;
@@ -166,7 +157,7 @@ public class RFX1_TransformMotion : MonoBehaviour
             oldPos = t.position;
             return;
         }
-
+      
         t.position = oldPos + frameMoveOffsetWorld;
         oldPos = t.position;
     }
@@ -206,6 +197,7 @@ public class RFX1_TransformMotion : MonoBehaviour
             instance.transform.LookAt(hit.point + hit.normal + hit.normal * CollisionOffset);
             if (!CollisionEffectInWorldSpace) instance.transform.parent = transform;
             Destroy(instance, DestroyTimeDelay);
+            Destroy(gameObject.transform.parent.gameObject, DestroyTimeDelay);
         }
     }
 

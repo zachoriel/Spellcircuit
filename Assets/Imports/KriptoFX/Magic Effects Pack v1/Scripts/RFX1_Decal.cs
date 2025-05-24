@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
-#if KRIPTO_FX_LWRP_RENDERING
-using UnityEngine.Experimental.Rendering.LightweightPipeline;
-#endif
 
 [ExecuteInEditMode]
 public class RFX1_Decal : MonoBehaviour
@@ -21,33 +19,27 @@ public class RFX1_Decal : MonoBehaviour
     private Vector3 startScale;
     private Vector3 worldRotation = new Vector3(0, 0, 0);
 
+    private bool defaultDepthTextureMode;
+
     void Awake()
     {
         startScale = transform.localScale;
     }
 
-
     private void OnEnable()
     {
-        //if (Application.isPlaying) mat = GetComponent<Renderer>().material;
-        //else mat = GetComponent<Renderer>().sharedMaterial;
+        var cam = Camera.main;
+        if (cam != null)
+        {
+            var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+            if (addCamData != null)
+            {
+                defaultDepthTextureMode = addCamData.requiresDepthTexture;
+                addCamData.requiresDepthTexture = IsScreenSpace;
+            }
+        }
 
-        var meshRend = GetComponent<MeshRenderer>();
-        if (meshRend == null) return;
-
-        ps = GetComponent<ParticleSystem>();
-        if (ps != null) psMain = ps.main;
-
-        if (Camera.main.depthTextureMode != DepthTextureMode.Depth) Camera.main.depthTextureMode = DepthTextureMode.Depth;
-
-        GetComponent<MeshRenderer>().reflectionProbeUsage = ReflectionProbeUsage.Off;
-
-#if KRIPTO_FX_LWRP_RENDERING
-        var addCamData = Camera.main.GetComponent<LWRPAdditionalCameraData>();
-        if (addCamData != null) IsScreenSpace = addCamData.requiresDepthTexture;
-#endif
-
-        if (Camera.main.orthographic) IsScreenSpace = false;
+        //if (Camera.main.orthographic) IsScreenSpace = false;
 
         if (!IsScreenSpace)
         {
@@ -71,7 +63,7 @@ public class RFX1_Decal : MonoBehaviour
             sharedMaterial.SetInt("_ZTest1", (int)UnityEngine.Rendering.CompareFunction.Greater);
         }
 
-        if (Application.isPlaying && UseRandomRotationAndScale && !UseWorldSpaceRotation)
+        if (UseRandomRotationAndScale && !UseWorldSpaceRotation && Application.isPlaying)
         {
             transform.localRotation = Quaternion.Euler(Random.Range(0, 360), 90, 90);
             var randomScaleRange = Random.Range(startScale.x - startScale.x * randomScalePercent * 0.01f,
@@ -80,19 +72,16 @@ public class RFX1_Decal : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        var cam = Camera.main;
+        if (cam == null) return;
+        var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+        if (addCamData != null) addCamData.requiresDepthTexture = defaultDepthTextureMode;
+    }
+
     void LateUpdate()
     {
-        Matrix4x4 invTransformMatrix = transform.worldToLocalMatrix;
-        // mat.SetMatrix("_InverseTransformMatrix", invTransformMatrix);
-        if (props == null) props = new MaterialPropertyBlock();
-        if (rend == null) rend = GetComponent<MeshRenderer>();
-        rend.GetPropertyBlock(props);
-       
-        props.SetMatrix("_InverseTransformMatrix", invTransformMatrix);
-        rend.SetPropertyBlock(props);
-        
-        if (ps != null) psMain.scalingMode = ParticleSystemScalingMode.Hierarchy;
-
         if (UseWorldSpaceRotation)
         {
             transform.rotation = Quaternion.Euler(worldRotation);

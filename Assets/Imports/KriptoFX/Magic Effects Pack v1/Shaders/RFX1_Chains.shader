@@ -21,7 +21,6 @@ Shader "KriptoFX/RFX1/Chains" {
 		CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
-		#pragma multi_compile_instancing
 
 #pragma multi_compile_fog
 
@@ -52,7 +51,6 @@ Shader "KriptoFX/RFX1/Chains" {
 		float2 texcoord : TEXCOORD0;
 
 		UNITY_VERTEX_INPUT_INSTANCE_ID
-
 	};
 
 	struct v2f {
@@ -93,7 +91,6 @@ Shader "KriptoFX/RFX1/Chains" {
 		UNITY_SETUP_INSTANCE_ID(v);
 		UNITY_TRANSFER_INSTANCE_ID(v, o);
 		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
 		o.vertex = UnityObjectToClipPos(v.vertex);
 
 		o.color = v.color;
@@ -111,8 +108,7 @@ Shader "KriptoFX/RFX1/Chains" {
 
 
 	half4 frag(v2f i) : SV_Target
-	{
-		UNITY_SETUP_INSTANCE_ID(i);
+	{ UNITY_SETUP_INSTANCE_ID(i);
 		half4 tex = tex2D(_MainTex, i.texcoord);
 		if (tex.a < 0.2) discard;
 
@@ -145,8 +141,7 @@ Shader "KriptoFX/RFX1/Chains" {
 #pragma vertex vert
 #pragma fragment frag
 #pragma multi_compile_shadowcaster
-#pragma multi_compile_instancing
-
+#pragma fragmentoption ARB_precision_hint_fastest
 
 #include "UnityCG.cginc"
 
@@ -155,7 +150,6 @@ Shader "KriptoFX/RFX1/Chains" {
 		float2 texcoord : TEXCOORD0;
 		float4 vertex : POSITION;
 		half3 normal : NORMAL;
-		UNITY_VERTEX_INPUT_INSTANCE_ID
 	};
 
 
@@ -169,17 +163,11 @@ Shader "KriptoFX/RFX1/Chains" {
 	{
 		float2 texcoord : TEXCOORD3;
 		V2F_SHADOW_CASTER;
-		UNITY_VERTEX_INPUT_INSTANCE_ID
-			UNITY_VERTEX_OUTPUT_STEREO
 	};
 
 	v2f vert(appdata v)
 	{
 		v2f o;
-
-		UNITY_SETUP_INSTANCE_ID(v);
-		UNITY_TRANSFER_INSTANCE_ID(v, o);
-		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 		o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 		TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
 			return o;
@@ -187,7 +175,6 @@ Shader "KriptoFX/RFX1/Chains" {
 
 	float4 frag(v2f i) : COLOR
 	{
-		UNITY_SETUP_INSTANCE_ID(i);
 		half4 tex = tex2D(_MainTex, i.texcoord);
 		if (tex.a < 0.2) discard;
 	SHADOW_CASTER_FRAGMENT(i)

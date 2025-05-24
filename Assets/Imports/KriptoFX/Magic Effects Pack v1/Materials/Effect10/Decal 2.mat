@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Decal 2
   m_Shader: {fileID: 4800000, guid: 32ed75d04da1d2348baeac9738ccd729, type: 3}
-  m_ShaderKeywords: USE_ALPHA_POW USE_CUTOUT USE_CUTOUT_TEX USE_NOISE_DISTORTION USE_WORLD_SPACE_UV
-    _BLENDMODE_BLEND _EMISSION
+  m_ShaderKeywords: USE_ALPHA_POW USE_CUTOUT USE_CUTOUT_TEX USE_NOISE_DISTORTION
+    USE_WORLD_SPACE_UV _BLENDMODE_BLEND _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -91,7 +91,6 @@ Material:
     - _DstBlend: 0
     - _DstMode: 10
     - _FPOW: 5
-    - _FillWithRed: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -109,19 +108,11 @@ Material:
     - _SrcMode: 5
     - _UVSec: 0
     - _UseAlphaPow: 1
-    - _UseCut: 0
     - _UseCutout: 1
-    - _UseCutout1: 0
     - _UseCutoutTex: 1
     - _UseCutoutThreshold: 0
-    - _UseDisto: 0
-    - _UseDistortion: 0
     - _UseFrameBlending: 0
-    - _UseFrameg: 0
-    - _UseLight: 0
     - _UseNoiseDistortion: 1
-    - _UseVertexLight: 0
-    - _UseVertexLight1: 0
     - _UseWorldSpaceUV: 1
     - _ZTest1: 5
     - _ZWrite: 1
@@ -130,4 +121,5 @@ Material:
     - _CutoutColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _TintColor: {r: 0.7352941, g: 0.81379294, b: 1, a: 1}
+    - _TintColor: {r: 0.4960395, g: 0.5499688, b: 0.6698113, a: 0.3529412}
+  m_BuildTextureStacks: []

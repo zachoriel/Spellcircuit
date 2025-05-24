@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -6,48 +7,35 @@ using UnityEditor;
 
 public class RFX1_PerPlatformSettings : MonoBehaviour
 {
-    public bool DisableOnMobiles;
-    public GameObject[] DisabledMobileObjects;
     [Range(0.1f, 1)] public float ParticleBudgetForMobiles = 1f;
 
-    // Use this for initialization
-    private bool isMobile;
-
+    private bool defaultOpaueColorUsing;
 
     void Awake()
     {
-        isMobile = IsMobilePlatform();
-
+        ChangeParticlesBudget(ParticleBudgetForMobiles);
     }
 
-    private void Start()
+    void OnEnable()
     {
-        if (isMobile)
+        var cam = Camera.main;
+
+        if (cam == null) return;
+        var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+        if (addCamData != null)
         {
-            if (DisableOnMobiles)
-            {
-                foreach (var go in DisabledMobileObjects)
-                    go.SetActive(false);
-            }
-            else
-            {
-                if (ParticleBudgetForMobiles < 0.99f) ChangeParticlesBudget(ParticleBudgetForMobiles);
-            }
+            defaultOpaueColorUsing = addCamData.requiresColorTexture;
+            addCamData.requiresColorTexture = true;
         }
     }
 
-    bool IsMobilePlatform()
+    void OnDisable()
     {
-        bool isMobile = false;
-#if UNITY_EDITOR
-        if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android
-            || EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS
-            || EditorUserBuildSettings.activeBuildTarget == BuildTarget.WSAPlayer)
-            isMobile = true;
-#else
-        if (Application.isMobilePlatform) isMobile = true;
-#endif
-        return isMobile;
+        var cam = Camera.main;
+
+        if (cam == null) return;
+        var addCamData = cam.GetComponent<UniversalAdditionalCameraData>();
+        if (addCamData != null) addCamData.requiresColorTexture = defaultOpaueColorUsing;
     }
 
     void ChangeParticlesBudget(float particlesMul)

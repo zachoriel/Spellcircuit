@@ -22,17 +22,17 @@ Category {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_particles
-			#pragma multi_compile_fog
 			#pragma multi_compile_instancing
 
-			#pragma multi_compile BlendAdd BlendAlpha BlendMul BlendMul2
-			#pragma multi_compile VertLight_OFF VertLight4_ON VertLight4Normal_ON
-			#pragma shader_feature FrameBlend_OFF
+			#pragma multi_compile_fog
+			#pragma multi_compile_local BlendAdd BlendAlpha BlendMul BlendMul2
+			#pragma multi_compile_local VertLight_OFF VertLight4_ON VertLight4Normal_ON
+			#pragma shader_feature_local FrameBlend_OFF
 
-			#pragma multi_compile Clip_OFF Clip_ON Clip_ON_Alpha
-			#pragma multi_compile FresnelFade_OFF FresnelFade_ON
-			#pragma multi_compile _ _MOBILEDEPTH_ON
+			#pragma multi_compile_local Clip_OFF Clip_ON Clip_ON_Alpha
+			#pragma multi_compile_local FresnelFade_OFF FresnelFade_ON
+#pragma shader_feature_local SoftParticles_ON
+
 
 
 			#include "UnityCG.cginc"
@@ -43,6 +43,7 @@ Category {
 			float _Cutout;
 			half _FresnelStr;
 			half _BloomThreshold;
+			float4 _DepthPyramidScale;
 
 			struct appdata_t {
 				float4 vertex : POSITION;
@@ -78,8 +79,6 @@ Category {
 #ifdef FresnelFade_ON
 				float fresnel : TEXCOORD4;
 #endif
-
-
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 					UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -98,6 +97,7 @@ Category {
 				o.vertex = UnityObjectToClipPos(v.vertex);
 
 				o.projPos = ComputeScreenPos (o.vertex);
+
 				COMPUTE_EYEDEPTH(o.projPos.z);
 
 				o.color = v.color;
@@ -128,13 +128,8 @@ Category {
 
 			half4 frag (v2f i) : SV_Target
 			{
+
 				UNITY_SETUP_INSTANCE_ID(i);
-			#if  SOFTPARTICLES_ON
-			float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w));
-					float partZ = i.projPos.z;
-					float fade = saturate (_InvFade * (sceneZ-partZ));
-					i.color.a *= fade;
-			#endif
 
 			#ifdef FrameBlend_OFF
 				half4 tex = tex2D(_MainTex, i.texcoord);
@@ -166,6 +161,13 @@ Category {
 				res.a *= i.fresnel;
 			#endif
 
+#if  SoftParticles_ON
+				float z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w).r;
+				float sceneZ = LinearEyeDepth(UNITY_SAMPLE_DEPTH(z));
+				float partZ = i.projPos.z;
+				float fade = saturate(_InvFade * (sceneZ - partZ));
+				res *= fade;
+#endif
 
 			#ifdef BlendAdd
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, half4(0,0,0,0));

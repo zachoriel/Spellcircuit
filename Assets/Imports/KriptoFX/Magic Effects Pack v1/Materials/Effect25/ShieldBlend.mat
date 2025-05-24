@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: ShieldBlend
   m_Shader: {fileID: 4800000, guid: 4775e5a8f344d6348adf934e722da85d, type: 3}
-  m_ShaderKeywords: BlendAlpha Clip_OFF FrameBlend_ON FresnelFade_OFF SoftParticles_ON
+  m_ShaderKeywords: BlendMul Clip_OFF FrameBlend_ON FresnelFade_OFF SoftParticles_ON
     VertLight_OFF
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -42,8 +42,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - CullMode: 0
-    - DstMode: 10
-    - SrcMode: 5
+    - DstMode: 0
+    - SrcMode: 2
     - _BumpAmt: 20
     - _Cutout: 1
     - _CutoutThreshold: 0
@@ -60,5 +60,6 @@ Material:
     - _CutoutColor: {r: 0.91176486, g: 4, b: 1.1886411, a: 1}
     - _FresnelColor: {r: 0.06925258, g: 0.40499997, b: 0.041691188, a: 1}
     - _FresnelDistort: {r: 8, g: 12, b: 1, a: 1500}
-    - _TintColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TintColor: {r: 0.3773585, g: 0, b: 0, a: 1}
     - _UVScrollDistort: {r: 8, g: 12, b: 1, a: 1500}
+  m_BuildTextureStacks: []
