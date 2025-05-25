@@ -18,6 +18,7 @@ public class BaseAnimationController : MonoBehaviour
     [SerializeField] protected AnimationClip[] meleeAttackVariants;
 
     protected bool isAiming = false;
+    protected bool isCasting = false;
 
     public virtual void Awake()
     {
@@ -91,6 +92,14 @@ public class BaseAnimationController : MonoBehaviour
         if (AnimatorHasParameter("IsAiming"))
         {
             animator.SetBool("IsAiming", isAiming);
+        }
+    }
+
+    public virtual void SetCasting(bool isCasting)
+    {
+        if (AnimatorHasParameter("IsCasting"))
+        {
+            animator.SetBool("IsCasting", isCasting);
         }
     }
 

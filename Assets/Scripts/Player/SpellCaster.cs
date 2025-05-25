@@ -8,14 +8,6 @@ public class SpellCaster : MonoBehaviour
     [SerializeField] private Transform spellSpawnPoint;
     [SerializeField] private Camera cam;
 
-    private void Update()
-    {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     CastTestSpell();
-        // }
-    }
-
     public void CastTestSpell()
     {
         Vector3 direction;

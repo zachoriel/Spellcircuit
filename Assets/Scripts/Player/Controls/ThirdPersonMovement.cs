@@ -90,7 +90,7 @@ public class ThirdPersonMovement : BaseAnimationController
         if (isAiming)
         {
             HandleAimingInput();
-            if (Input.GetKeyDown(Globals.KeyBinds.ATTACK_BUTTON))
+            if (Input.GetKeyDown(Globals.KeyBinds.ATTACK_BUTTON) && !isCasting)
             {
                 TriggerCastAnimation();
             }
@@ -103,7 +103,7 @@ public class ThirdPersonMovement : BaseAnimationController
     {
         float targetAlpha = isAiming ? 1f : 0f;
         float currentAlpha = reticleCanvasGroup.alpha;
-        
+
         if (Mathf.Abs(currentAlpha - targetAlpha) > 0.01f)
         {
             reticleCanvasGroup.alpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * reticleFadeSpeed);
@@ -128,12 +128,21 @@ public class ThirdPersonMovement : BaseAnimationController
 
     private void TriggerCastAnimation()
     {
+        isCasting = true;
+        SetCasting(isCasting);
+
         TriggerSpellcast();
     }
 
     public void SpawnSpellFromAnimation()
     {
         spellCaster.CastTestSpell();
+    }
+
+    public void EndCast()
+    {
+        isCasting = false;
+        SetCasting(isCasting);
     }
 
     private void HandleMovement()
