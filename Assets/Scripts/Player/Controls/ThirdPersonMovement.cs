@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using Unity.Cinemachine;
 
 public class ThirdPersonMovement : BaseAnimationController
@@ -8,6 +7,7 @@ public class ThirdPersonMovement : BaseAnimationController
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform playerCamera;
     [SerializeField] private SpellCaster spellCaster;
+    [SerializeField] private CanvasGroup reticleCanvasGroup;
     [SerializeField] private GameObject defaultCinemachineCam;
     [SerializeField] private GameObject aimingCinemachineCam;
     [SerializeField] private CinemachineBrain brain;
@@ -25,6 +25,10 @@ public class ThirdPersonMovement : BaseAnimationController
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float verticalVelocity = 0f;
 
+    [Header("Aiming Settings")]
+    [SerializeField] private float cameraTransitionTime = 0.5f;
+    [SerializeField] private float reticleFadeSpeed = 1.0f;
+
     public override void Awake()
     {
         base.Awake();
@@ -37,6 +41,8 @@ public class ThirdPersonMovement : BaseAnimationController
 
         defaultCMCamOrbitFollow = defaultCinemachineCam.GetComponent<CinemachineOrbitalFollow>();
         aimingCMCamOrbitFollow = aimingCinemachineCam.GetComponent<CinemachineOrbitalFollow>();
+
+        brain.DefaultBlend.Time = cameraTransitionTime;
     }
 
     private void Update()
@@ -88,6 +94,23 @@ public class ThirdPersonMovement : BaseAnimationController
             {
                 TriggerCastAnimation();
             }
+        }
+
+        UpdateReticle();
+    }
+
+    private void UpdateReticle()
+    {
+        float targetAlpha = isAiming ? 1f : 0f;
+        float currentAlpha = reticleCanvasGroup.alpha;
+        
+        if (Mathf.Abs(currentAlpha - targetAlpha) > 0.01f)
+        {
+            reticleCanvasGroup.alpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * reticleFadeSpeed);
+        }
+        else
+        {
+            reticleCanvasGroup.alpha = targetAlpha;
         }
     }
 
