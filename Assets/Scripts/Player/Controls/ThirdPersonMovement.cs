@@ -1,12 +1,12 @@
 using UnityEngine;
+using System.Collections;
 using Unity.Cinemachine;
 
-public class ThirdPersonMovement : MonoBehaviour
+public class ThirdPersonMovement : BaseAnimationController
 {
     [Header("Components")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform playerCamera;
-    [SerializeField] private Animator animator;
     [SerializeField] private SpellCaster spellCaster;
     [SerializeField] private GameObject defaultCinemachineCam;
     [SerializeField] private GameObject aimingCinemachineCam;
@@ -14,7 +14,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private CinemachineOrbitalFollow defaultCMCamOrbitFollow;
     private CinemachineOrbitalFollow aimingCMCamOrbitFollow;
 
-    [Header("Settings")]
+    [Header("Movement Settings")]
     [SerializeField] private float aimingSpeed = 1.5f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 6f;
@@ -25,7 +25,10 @@ public class ThirdPersonMovement : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float verticalVelocity = 0f;
 
-    private bool isAiming = false;
+    public override void Awake()
+    {
+        base.Awake();
+    }
 
     private void Start()
     {
@@ -59,7 +62,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private void HandleAiming()
     {
         isAiming = Input.GetKey(Globals.KeyBinds.AIM_BUTTON);
-        animator.SetBool("IsAiming", isAiming);
+        SetAiming(isAiming);
 
         // Manually sync CM cameras to the correct orientation when transitioning in/out of aiming.
         if (!isAiming && !defaultCinemachineCam.gameObject.activeSelf)
@@ -102,7 +105,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void TriggerCastAnimation()
     {
-        animator.SetTrigger("CastSpell");
+        TriggerSpellcast();
     }
 
     public void SpawnSpellFromAnimation()
@@ -142,6 +145,6 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         float speedPercent = direction.magnitude * (running ? 1f : 0.5f);
-        animator.SetFloat("Speed", speedPercent);
+        UpdateMovement(speedPercent);
     }
 }

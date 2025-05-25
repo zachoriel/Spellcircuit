@@ -553,6 +553,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9743b815d7322a640835dc4eaec51448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleVariants:
+  - {fileID: -203655887218126122, guid: 2c7d2bec38b85fc45b81ad3e485e750a, type: 3}
+  deathVariants:
+  - {fileID: -203655887218126122, guid: d34c661f20e27b9489f0e13a59c1504e, type: 3}
+  - {fileID: -203655887218126122, guid: 1afdaf9236d8cc948ac6c2c772a2e965, type: 3}
+  - {fileID: -203655887218126122, guid: 175a6e3f2efad224dbe61ce2f0419335, type: 3}
+  - {fileID: -203655887218126122, guid: 8382d488a1bc5c14eae9eda6055ebb0f, type: 3}
+  - {fileID: -203655887218126122, guid: a46f05bbbfd3a56498efb375aa94e99b, type: 3}
+  - {fileID: -203655887218126122, guid: 8a02c3a2609898e4c8cb2db3f0c1cbcf, type: 3}
+  - {fileID: -203655887218126122, guid: 3029d294fe69bd34594223ce93c451ac, type: 3}
+  meleeAttackVariants: []
   controller: {fileID: 452087188833572492}
   playerCamera: {fileID: 0}
   animator: {fileID: 1494891916443022292}
@@ -566,6 +577,8 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   gravity: -9.81
   verticalVelocity: 0
+  timeToRollForNewIdleAnim: 5
+  chanceToSwapIdleAnim: 2
 --- !u!114 &7241251593336102755
 MonoBehaviour:
   m_ObjectHideFlags: 0
