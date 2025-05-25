@@ -10,13 +10,13 @@ public class SpellCaster : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CastTestSpell();
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     CastTestSpell();
+        // }
     }
 
-    private void CastTestSpell()
+    public void CastTestSpell()
     {
         Vector3 direction;
 
