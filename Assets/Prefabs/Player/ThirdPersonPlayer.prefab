@@ -555,9 +555,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1494891916443022292}
   idleVariants:
-  - {fileID: -203655887218126122, guid: 2c7d2bec38b85fc45b81ad3e485e750a, type: 3}
+  - {fileID: -203655887218126122, guid: 863c00f8c94c0194da7255c226cc38d6, type: 3}
   timeToRollForNewIdleAnim: 5
-  chanceToSwapIdleAnim: 2
+  chanceToSwapIdleAnim: 9
   deathVariants:
   - {fileID: -203655887218126122, guid: d34c661f20e27b9489f0e13a59c1504e, type: 3}
   - {fileID: -203655887218126122, guid: 1afdaf9236d8cc948ac6c2c772a2e965, type: 3}
@@ -771,7 +771,7 @@ Transform:
   m_GameObject: {fileID: 2766514846806309801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.98, y: 7.875843, z: 11.047}
+  m_LocalPosition: {x: 12.98, y: 7.875843, z: 11.629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
