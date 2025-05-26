@@ -32,6 +32,9 @@ public class ThirdPersonMovement : BaseAnimationController
     public override void Awake()
     {
         base.Awake();
+
+        // TriggerRandomIdle();
+        // StartCoroutine(CycleIdleAnimations());
     }
 
     private void Start()
@@ -177,6 +180,6 @@ public class ThirdPersonMovement : BaseAnimationController
         }
 
         float speedPercent = direction.magnitude * (running ? 1f : 0.5f);
-        UpdateMovement(speedPercent);
+        base.UpdateMovement(speedPercent);
     }
 }
