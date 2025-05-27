@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class BaseAnimationController : MonoBehaviour
 {
@@ -31,41 +30,40 @@ public class BaseAnimationController : MonoBehaviour
         animator.SetFloat("Speed", speed);
     }
 
-    // public virtual IEnumerator CycleIdleAnimations()
-    // {
-    //     while (true)
-    //     {
-    //         // If the player is standing still, (chanceToSwapIdleAnim) every (timeToRollForNewIdleAnim) seconds.
-    //         yield return new WaitForSeconds(timeToRollForNewIdleAnim);
-    //         if (!isAiming && animator.GetFloat("Speed") == 0)
-    //         {
-    //             int rand = Random.Range(0, 10);
-    //             if (rand < chanceToSwapIdleAnim)
-    //             {
-    //                 TriggerRandomIdle();
-    //             }
-    //         }
-    //     }
-    // }
+    public virtual IEnumerator CycleIdleAnimations()
+    {
+        while (true)
+        {
+             // If the player is standing still, (chanceToSwapIdleAnim) every (timeToRollForNewIdleAnim) seconds.
+            yield return new WaitForSeconds(timeToRollForNewIdleAnim);
+            if (!isAiming && animator.GetFloat("Speed") == 0)
+            {
+                int rand = Random.Range(0, 10);
+                if (rand < chanceToSwapIdleAnim)
+                {
+                    TriggerRandomIdle();
+                }
+            }
+        }
+    }
 
-    // public virtual void TriggerRandomIdle()
-    // {
-    //     if (idleVariants.Length == 0) { return; }
+    public virtual void TriggerRandomIdle()
+    {
+        if (idleVariants.Length == 0) { return; }
 
-    //     int index = currentIdleIndex;
-    //     do { index = Random.Range(0, idleVariants.Length); }
-    //     while (index == currentIdleIndex && idleVariants.Length > 1);
+        int index = currentIdleIndex;
+        do { index = Random.Range(0, idleVariants.Length); }
+        while (index == currentIdleIndex && idleVariants.Length > 1);
 
-    //     currentIdleIndex = index;
-    //     //animator.SetFloat("IdleIndex", index);
-    //     PlayIdleByIndex(index);
-    // }
+        currentIdleIndex = index;
+        PlayIdleByIndex(index);
+    }
 
-    // private void PlayIdleByIndex(int index)
-    // {
-    //     string stateName = $"Idle {index + 1}";
-    //     animator.CrossFade(stateName, 0.25f);
-    // }
+    private void PlayIdleByIndex(int index)
+    {
+        string stateName = $"Idle {index + 1}";
+        animator.CrossFade(stateName, 0.25f);
+    }
 
     public virtual void TriggerRandomDeath()
     {
