@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SaveableEntity : MonoBehaviour
 {
+    public static readonly HashSet<SaveableEntity> ActiveEntities = new HashSet<SaveableEntity>();
     public string id = string.Empty;
 
     [ContextMenu("Generate ID")]
@@ -12,6 +13,16 @@ public class SaveableEntity : MonoBehaviour
 
     private SaveLoadSystem saveLoadSystem;
     private SaveLoadSystem.SaveType saveType;
+
+    private void OnEnable()
+    {
+        ActiveEntities.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        ActiveEntities.Remove(this);
+    }
 
     private void Start()
     {

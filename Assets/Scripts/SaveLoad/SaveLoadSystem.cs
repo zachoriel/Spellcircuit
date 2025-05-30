@@ -48,6 +48,15 @@ public class SaveLoadSystem : Service
 
     public void Save(string _fileName, string _extension)
     {
+        foreach (var saveable in SaveableEntity.ActiveEntities)
+        {
+            if (string.IsNullOrEmpty(saveable.id))
+            {
+                saveable.GenerateID();
+                Debug.LogWarning($"SaveableEntity on {gameObject.name} was missing an ID. Generated new ID: {saveable.id}.");
+            }
+        }
+
         var state = new Dictionary<string, string>();
         CaptureState(state);
         SaveFile(state, _fileName, _extension);
@@ -87,8 +96,7 @@ public class SaveLoadSystem : Service
 
     private void CaptureState(Dictionary<string, string> _state)
     {
-        // ToDo: Think more on this. Maybe saveables can be cached and this method can add to the list if needed.
-        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        foreach (var saveable in SaveableEntity.ActiveEntities)
         {
             _state[saveable.id] = JsonConvert.SerializeObject(saveable.CaptureState());
         }
@@ -96,8 +104,7 @@ public class SaveLoadSystem : Service
 
     private void RestoreState(Dictionary<string, string> _state)
     {
-        // ToDo: See CaptureState comment above.
-        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        foreach (var saveable in SaveableEntity.ActiveEntities)
         {
             if (_state.TryGetValue(saveable.id, out string value))
             {

@@ -9,6 +9,7 @@ public class Enemy : BaseAnimationController
 
     [Header("Components")]
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private SaveableEntity saveableEntity;
 
     [Header("Base Settings")]
     [SerializeField] private float maxHealth;
@@ -35,8 +36,17 @@ public class Enemy : BaseAnimationController
     {
         base.Awake();
 
+        EnsureComponents();
+        saveableEntity?.GenerateID();
+        
         // TriggerRandomIdle();
         // StartCoroutine(CycleIdleAnimations());
+    }
+
+    private void EnsureComponents()
+    {
+        if (!agent) { agent = GetComponent<NavMeshAgent>(); }
+        if (!saveableEntity) { saveableEntity = GetComponent<SaveableEntity>(); }
     }
 
     private void Start()
