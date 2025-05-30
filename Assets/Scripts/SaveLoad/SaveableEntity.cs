@@ -8,7 +8,7 @@ public class SaveableEntity : MonoBehaviour
     public string id = string.Empty;
 
     [ContextMenu("Generate ID")]
-    public void GenerateID() => Guid.NewGuid().ToString();
+    public void GenerateID() => id = Guid.NewGuid().ToString();
 
     private SaveLoadSystem saveLoadSystem;
     private SaveLoadSystem.SaveType saveType;
@@ -47,11 +47,11 @@ public class SaveableEntity : MonoBehaviour
 
     public void RestoreState(Dictionary<string, string> _state)
     {
-        var stateDicitonary = _state;
+        var stateDictionary = _state;
         foreach (var saveable in GetComponents<ISaveable>())
         {
             string typeName = saveable.GetType().ToString();
-            if (stateDicitonary.TryGetValue(typeName, out string value))
+            if (stateDictionary.TryGetValue(typeName, out string value))
             {
                 saveable.RestoreState(value);
             }

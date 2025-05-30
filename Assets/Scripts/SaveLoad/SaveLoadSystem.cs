@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class SaveLoadSystem : Service
 {
-    private const string KEY = "BV4eTf3CvhfFcFOUryN1DYK/BW22ihZQxFyf2kdwTzY=";
-    private const string IV = "+iL1YbNylwtZLHlCcD+oXg==";
+    private const string KEY = "";
+    private const string IV = "";
 
     public enum SaveType
     {
@@ -35,7 +35,7 @@ public class SaveLoadSystem : Service
 
     private void OnSaveTypeChangedInternal(SaveType newSaveType)
     {
-        Debug.LogError("WARNING: ENCRYPTED SAVE DATA IS A WORK IN PROGRESS; KEY/IV ARE UNSAFELY STORED. RECOMMEND USING JSON FOR NOW."); // ToDo: Need to figure out secure storage. Having the Key/IV just sitting here in the script isn't gonna cut it.
+        Debug.LogWarning("WARNING: ENCRYPTED SAVE DATA IS A WORK IN PROGRESS; KEY/IV ARE UNSAFELY STORED. USE JSON FOR NOW."); // ToDo: Need to figure out secure storage. Having the Key/IV just sitting here in the script is very bad.
         Debug.LogWarning($"Warning: Save type changed to {newSaveType.ToString()}. Please re-save your game now to ensure data integrity.");
     }
 
@@ -87,7 +87,8 @@ public class SaveLoadSystem : Service
 
     private void CaptureState(Dictionary<string, string> _state)
     {
-        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None)) // ToDo: think more on this. Maybe saveables can be cached and this method can add to the list if needed.
+        // ToDo: Think more on this. Maybe saveables can be cached and this method can add to the list if needed.
+        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             _state[saveable.id] = JsonConvert.SerializeObject(saveable.CaptureState());
         }
@@ -95,7 +96,8 @@ public class SaveLoadSystem : Service
 
     private void RestoreState(Dictionary<string, string> _state)
     {
-        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None)) // See above.
+        // ToDo: See CaptureState comment above.
+        foreach (var saveable in FindObjectsByType<SaveableEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             if (_state.TryGetValue(saveable.id, out string value))
             {
@@ -116,7 +118,7 @@ public class SaveLoadSystem : Service
             CryptoStreamMode.Write
         );
 
-        cryptoStream.Write(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(_state)));
+        cryptoStream.Write(Encoding.UTF8.GetBytes(_state));
     }
 
     public string ReadEncryptedData(string _fullPath)
