@@ -555,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1494891916443022292}
   idleVariants:
-  - {fileID: -203655887218126122, guid: 863c00f8c94c0194da7255c226cc38d6, type: 3}
+  - {fileID: -203655887218126122, guid: 2c7d2bec38b85fc45b81ad3e485e750a, type: 3}
   timeToRollForNewIdleAnim: 5
   chanceToSwapIdleAnim: 9
   deathVariants:

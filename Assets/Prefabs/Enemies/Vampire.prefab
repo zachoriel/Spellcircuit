@@ -2153,6 +2153,7 @@ GameObject:
   - component: {fileID: 1566830924680608440}
   - component: {fileID: -7689046290761988203}
   - component: {fileID: 4414488836431756746}
+  - component: {fileID: 2728658901614363272}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Untagged
@@ -2205,11 +2206,17 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: d4aef79dd83cba7458a460c1bbe6e5f7, type: 3}
   - {fileID: -203655887218126122, guid: 141dbb731f851ff4e95d79f8477fc704, type: 3}
   - {fileID: -203655887218126122, guid: 7e737529fed17de41a85dc8941c4c64a, type: 3}
+  agent: {fileID: 2728658901614363272}
   maxHealth: 10
-  moveSpeed: 2
-  detectionRange: 15
-  attackRange: 2
+  idleDuration: 2
+  wanderRadius: 5
+  wanderSpeed: 1.5
+  detectionRadius: 10
+  chaseSpeed: 5
   attackCooldown: 1.5
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &4414488836431756746
 Animator:
   serializedVersion: 7
@@ -2232,6 +2239,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &2728658901614363272
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747090448983998065}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5777156134589504078
 GameObject:
   m_ObjectHideFlags: 0
